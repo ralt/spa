@@ -11,4 +11,6 @@
 (defparameter *static-directory*
   (merge-pathnames #P"static/" spa-config:*base-directory*))
 
-
+(restas:mount-module -static- (#:restas.directory-publisher)
+  (:url "static")
+  (restas.directory-publisher:*directory* *static-directory*))

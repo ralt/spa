@@ -18,4 +18,7 @@
   `(concatenate 'string ,@body))
 
 (restas:define-route home ("")
-  "Hello world!111")
+  (spa.layout:main
+   (list
+    :title "SPA"
+    :body "Front page")))

@@ -1,12 +1,14 @@
 (in-package #:spa)
 
 (restas:define-route cats ("cat")
-  (spa.layout:main
-   (list
-    :title "All cats"
-    :body (spa.cat:all
-           (list
-            :names (alexandria:flatten (db cat/get-all-names)))))))
+  (let ((cats (db cat/get-all-names)))
+    (spa.layout:cats
+     (list
+      :title "All cats"
+      :cats cats
+      :body (spa.cat:all
+             (list
+              :names cats))))))
 
 (restas:define-route cat ("cat/:id")
   (let* ((id (parse-integer id :junk-allowed t))

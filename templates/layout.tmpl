@@ -3,12 +3,38 @@
 {template main}
 <!doctype html>
 <html>
-    <head>
-      <meta charset="utf-8">
-      <title>{$title}</title>
-    </head>
-    <body>
-      {$body|noAutoescape}
-    </body>
+  <head>
+    <meta charset="utf-8">
+    <title>{$title}</title>
+  </head>
+  <body>
+    {$body|noAutoescape}
+  </body>
 </html>
+{/template}
+
+{template cats}
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>{$title}</title>
+  </head>
+  <body>
+    <div class="select">
+      <select id="select-cat">
+        <option>Choisissez un chat</option>
+        {foreach $cat in $cats}
+          {call show-option data="$cat" /}
+        {/foreach}
+      </select>
+    </div>
+    {$body|noAutoescape}
+    <script src="/static/js/cats.js"></script>
+  </body>
+</html>
+{/template}
+
+{template showOption}
+  <option value="{$id}">{$name}</option>
 {/template}

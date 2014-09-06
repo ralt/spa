@@ -7,4 +7,4 @@
   ("INSERT INTO cat (name) VALUES ($1) RETURNING id" name) :single)
 
 (postmodern:defprepared cat/get-all-names
-    "SELECT name FROM cat")
+    "SELECT id, name FROM cat" :plists)

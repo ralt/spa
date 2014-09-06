@@ -2,8 +2,14 @@
 
 {template all}
   {foreach $name in $names}
-    <div class="cat">{$name}</div>
+    {call show-link data="$name" /}
   {/foreach}
+{/template}
+
+{template showLink}
+  <div class="cat link">
+    <a href="/cat/{$id}">{$name}</a>
+  </div>
 {/template}
 
 {template view}

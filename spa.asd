@@ -11,7 +11,8 @@
   :depends-on (:RESTAS
                :CLOSURE-TEMPLATE
                :POSTMODERN
-               :ALEXANDRIA)
+               :ALEXANDRIA
+               :restas-directory-publisher)
   :components ((:closure-template "templates/layout")
                (:closure-template "templates/cat")
                (:file "defmodule")
