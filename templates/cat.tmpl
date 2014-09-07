@@ -8,34 +8,97 @@
 
 {template view}
   <div class="cat">
-    {$name}
+    {call show-cat data="$cat" /}
   </div>
   <div class="history">
-    {foreach $history in $histories}
-      {call show-history data="$history" /}
-    {/foreach}
 
     <div class="add-history">
-      <a href="/history/add/{$id}">Ajouter un nouveau suivi</a>
+      {$form}
+    </div>
+
+    <div id="types" class="types">
+      {foreach $type in $types}
+        {call show-type data="$type" /}
+      {/foreach}
+    </div>
+
+    <table class="history-table">
+      <thead>
+        <th>Type</th>
+        <th>Date</th>
+        <th>Commentaire</th>
+        <th>Auteur</th>
+      </thead>
+      <tbody>
+        {foreach $history in $histories}
+          {call show-history data="$history" /}
+        {/foreach}
+      </tbody>
+    </table>
+
+  </div>
+{/template}
+
+{template showType}
+  <label>
+    <input type="checkbox" name="type" value="{$id}">
+    <span>{$name}</span>
+  </label>
+{/template}
+
+{template showCat}
+  <div class="name">
+    {$name}
+  </div>
+  
+  <div class="gender">
+    {$gender}
+  </div>
+  
+  <div class="birthday">
+    <div class="field-name">
+      Date de naissance
+    </div>
+    <div class="field-value">
+      {$birthday}
+    </div>
+  </div>
+  
+  <div class="status">
+    <div class="field-name">
+      Status
+    </div>
+    <div class="field-value">
+      {$status}
+    </div>
+  </div>
+  
+  <div class="identification">
+    <div class="field-name">
+      Identification
+    </div>
+    <div class="field-value">
+      {$identification}
+    </div>
+  </div>
+  
+  <div class="weight">
+    <div class="field-name">
+      Poids
+    </div>
+    <div class="field-value">
+      {$weight}
     </div>
   </div>
 {/template}
 
 {template showHistory}
-  <div class="single-history">
-    <div class="user">
-      Ajout par {$user}
-    </div>
-    <div class="date">
-      Fait le {$date}
-    </div>
-    <div class="type">
-      {$type}
-    </div>
-    <div class="comment">
-      {$comment}
-    </div>
-  </div>
+  <tr>
+    <td>{$type}</td>
+    <td>{$date}</td>
+    <td>{$comment}</td>
+    <td>{$author}</td>
+  </tr>
 {/template}
 
 {template historyadd}
@@ -57,6 +120,11 @@
         <textarea name="comment"></textarea>
       </label>
 
+      <label>
+        <span>Date du suivi</span>
+        <input type="date" name="date">
+      </label>
+
       <input type="submit" value="Ajouter le suivi">
     </fieldset>
   </form>
@@ -67,36 +135,58 @@
 {/template}
 
 {template add}
-  <form method="post">
+  <form method="post" class="cat-form">
     <fieldset>
       <legend>Ajout d'un chat</legend>
 
-      <fieldset>
-        <legend>Informations personnelles</legend>
-        <label>
-          <span>Nom du chat</span>
-          <input type="text" name="name" required>
-        </label>
-        
-        <label>
-          <span>Date de naissance du chat</span>
-          <input type="date" name="birthday" required>
-        </label>
-      </fieldset>
-      <fieldset class="presence">
-        <legend>Le chat est-il au refuge ?</legend>
+      <label>
+        <span>Nom du chat</span>
+        <input type="text" name="name" required>
+      </label>
 
+      <div class="gender">
+        <span>Gendre du chat</span>
         <label>
-          <input type="radio" name="presence" required value="1">
-          <span>Oui</span>
+          <input type="radio" name="gender" value="0" required>
+          <span>Mâle</span>
         </label>
 
         <label>
-          <input type="radio" name="presence" required value="0">
-          <span>Non</span>
+          <input type="radio" name="gender" value="1" required>
+          <span>Femelle</span>
         </label>
-        
-      </fieldset>
+      </div>
+
+      <label>
+        <span>Statut</span>
+        {$status}
+      </label>
+      
+      <label>
+        <span>Date de naissance du chat</span>
+        <input type="date" name="birthday">
+      </label>
+
+      <label>
+        <span>Identification</span>
+        <input type="text" maxlength="255" name="identification">
+      </label>
+
+      <label>
+        <span>Race</span>
+        <input type="text" maxlength="255" name="race">
+      </label>
+
+      <label>
+        <span>Robe</span>
+        <input type="text" maxlength="255" name="color">
+      </label>
+
+      <label>
+        <span>Poids</span>
+        <input type="text" maxlength="50" name="weight">
+      </label>
+
       <input type="submit" value="Ajouter le chat">
     </fieldset>
   </form>

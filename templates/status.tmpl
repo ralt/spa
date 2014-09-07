@@ -1,0 +1,13 @@
+{namespace spa.status}
+
+{template select}
+  <select name="status">
+    {foreach $status in $statuses}
+      {call show-option data="$status" /}
+    {/foreach}
+  </select>
+{/template}
+
+{template showOption}
+  <option value="{$id}">{$name}</option>
+{/template}

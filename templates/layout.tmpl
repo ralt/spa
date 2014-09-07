@@ -5,6 +5,7 @@
 <html>
   <head>
     <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, user-scalable=no">
     <title>{$title}</title>
     <link rel="stylesheet" href="/static/css/styles.css">
   </head>
@@ -19,19 +20,23 @@
 <html>
   <head>
     <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, user-scalable=no">
     <title>{$title}</title>
     <link rel="stylesheet" href="/static/css/styles.css">
   </head>
   <body>
-    <form class="select" method="get" action="/cat/goto">
+    <form id="select-form" class="select" method="get" action="/cat/goto">
       <select id="select-cat" name="id">
+        <option>Choisissez un chat</option>
         {foreach $cat in $cats}
           {call show-option data="$cat" /}
         {/foreach}
       </select>
-      <input type="submit" value="Go">
+      <input type="submit" value="Go" id="select-submit">
     </form>
     {$body|noAutoescape}
+
+    <script src="/static/js/cat.js"></script>
   </body>
 </html>
 {/template}
