@@ -1,21 +1,21 @@
 (in-package #:spa)
 
-(restas:define-route cats ("cat")
+(restas:define-route cat ("cat")
   (let ((cats (db cat/get-all-names)))
-    (spa.layout:cats
+    (spa.layout:cat
      (list
       :title "All cats"
       :cats cats
-      :body (spa.cat:all
-             (list
-              :names cats))))))
+      :body ""))))
 
-(restas:define-route cat ("cat/:id")
+(restas:define-route cat/get-one ("cat/:id")
   (let* ((id (parse-integer id :junk-allowed t))
-         (name (db cat/get-name-by-id id)))
-    (spa.layout:main
+         (name (db cat/get-name-by-id id))
+         (cats (db cat/get-all-names)))
+    (spa.layout:cat
      (list
       :title name
+      :cats cats
       :body (spa.cat:view
              (list
               :title (concat "Cat " name)
@@ -30,4 +30,4 @@
 (restas:define-route cat/post-add ("cat/add" :method :post)
   (let* ((name (hunchentoot:post-parameter "name"))
          (id (db cat/create name)))
-    (restas:redirect 'cat :id id)))
+    (restas:redirect 'cat/get-one :id id)))
