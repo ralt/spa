@@ -29,5 +29,7 @@
 
 (restas:define-route cat/post-add ("cat/add" :method :post)
   (let* ((name (hunchentoot:post-parameter "name"))
-         (id (db cat/create name)))
+         (birthdate (hunchentoot:post-parameter "birthday"))
+         (presence (hunchentoot:post-parameter "presence"))
+         (id (db cat/create name birthdate presence)))
     (restas:redirect 'cat/get-one :id id)))

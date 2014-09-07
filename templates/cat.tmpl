@@ -1,28 +1,103 @@
 {namespace spa.cat}
 
-{template all}
-  {foreach $name in $names}
-    {call show-link data="$name" /}
-  {/foreach}
-{/template}
-
 {template showLink}
-  <div class="cat link">
+  <div class="link">
     <a href="/cat/{$id}">{$name}</a>
   </div>
 {/template}
 
 {template view}
-  {$name}
+  <div class="cat">
+    {$name}
+  </div>
+  <div class="history">
+    {foreach $history in $histories}
+      {call show-history data="$history" /}
+    {/foreach}
+
+    <div class="add-history">
+      <a href="/history/add/{$id}">Ajouter un nouveau suivi</a>
+    </div>
+  </div>
+{/template}
+
+{template showHistory}
+  <div class="single-history">
+    <div class="user">
+      Ajout par {$user}
+    </div>
+    <div class="date">
+      Fait le {$date}
+    </div>
+    <div class="type">
+      {$type}
+    </div>
+    <div class="comment">
+      {$comment}
+    </div>
+  </div>
+{/template}
+
+{template historyadd}
+  <form method="post">
+    <fieldset>
+      <legend>Ajouter un suivi pour {$catname}</legend>
+      <label>
+        <span>Type de suivi</span>
+        <select name="type" required>
+          <option>Choisissez un type de suivi</option>
+          {foreach $type in $types}
+            {call show-type-option data="$type" /}
+          {/foreach}
+        </select>
+      </label>
+
+      <label>
+        <span>Commentaire (optionnel)</span>
+        <textarea name="comment"></textarea>
+      </label>
+
+      <input type="submit" value="Ajouter le suivi">
+    </fieldset>
+  </form>
+{/template}
+
+{template showTypeOption}
+  <option value="{$id}">{$name}</option>
 {/template}
 
 {template add}
   <form method="post">
-    <label>
-      <span>Name of the cat</span>
-      <input type="text" name="name" required>
-     </label>
+    <fieldset>
+      <legend>Ajout d'un chat</legend>
 
-    <input type="submit" value="Add cat">
+      <fieldset>
+        <legend>Informations personnelles</legend>
+        <label>
+          <span>Nom du chat</span>
+          <input type="text" name="name" required>
+        </label>
+        
+        <label>
+          <span>Date de naissance du chat</span>
+          <input type="date" name="birthday" required>
+        </label>
+      </fieldset>
+      <fieldset class="presence">
+        <legend>Le chat est-il au refuge ?</legend>
+
+        <label>
+          <input type="radio" name="presence" required value="1">
+          <span>Oui</span>
+        </label>
+
+        <label>
+          <input type="radio" name="presence" required value="0">
+          <span>Non</span>
+        </label>
+        
+      </fieldset>
+      <input type="submit" value="Ajouter le chat">
+    </fieldset>
   </form>
 {/template}
