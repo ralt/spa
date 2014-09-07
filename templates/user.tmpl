@@ -7,6 +7,17 @@
 <form method="post">
   <fieldset>
     <legend>Choisissez votre identité</legend>
+    <select name="users">
+      {foreach $user in $users}
+        {call show-option data="$user" /}
+      {/foreach}
+    </select>
+
+    <input type="submit" value="Se connecter">
   </fieldset>
 </form>
+{/template}
+
+{template showOption}
+  <option value="{$id}">{$name}</option>
 {/template}

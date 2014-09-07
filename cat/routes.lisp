@@ -8,6 +8,10 @@
       :cats cats
       :body ""))))
 
+(restas:define-route cat/goto ("cat/goto")
+  (let ((id (hunchentoot:get-parameter "id")))
+    (restas:redirect 'cat/get-one :id id)))
+
 (restas:define-route cat/get-one ("cat/:id")
   (let* ((id (parse-integer id :junk-allowed t))
          (name (db cat/get-name-by-id id))

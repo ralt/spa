@@ -23,16 +23,15 @@
     <link rel="stylesheet" href="/static/css/styles.css">
   </head>
   <body>
-    <div class="select">
-      <select id="select-cat">
-        <option>Choisissez un chat</option>
+    <form class="select" method="get" action="/cat/goto">
+      <select id="select-cat" name="id">
         {foreach $cat in $cats}
           {call show-option data="$cat" /}
         {/foreach}
       </select>
-    </div>
+      <input type="submit" value="Go">
+    </form>
     {$body|noAutoescape}
-    <script src="/static/js/cats.js"></script>
   </body>
 </html>
 {/template}
