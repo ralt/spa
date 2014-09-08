@@ -7,12 +7,19 @@ FROM cat
 WHERE id = $1
 " id) :plist)
 
-(postmodern:defprepared-with-names cat/create (name birthday presence)
+(postmodern:defprepared-with-names cat/create (name
+                                               gender
+                                               status
+                                               birthday
+                                               identification
+                                               race
+                                               color
+                                               weight)
   ("
-INSERT INTO cat (name, birthday, presence)
-VALUES ($1, $2, $3)
+INSERT INTO cat (name, gender, status, birthday, identification, race, color, weight)
+VALUES ($1, $2, $3, $4, $5, $6, $7, $8)
 RETURNING id
-" name birthday presence) :single)
+" name gender status birthday identification race color weight) :single)
 
 (postmodern:defprepared cat/get-all
     "SELECT id, name FROM cat" :plists)

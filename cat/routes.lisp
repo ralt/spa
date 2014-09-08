@@ -42,10 +42,20 @@
 (restas:define-route cat/post-add ("cat/add" :method :post)
   (check-login)
   (let* ((name (hunchentoot:post-parameter "name"))
-         (birthdate (hunchentoot:post-parameter "birthday"))
-         (presence (hunchentoot:post-parameter "presence"))
+         (gender (hunchentoot:post-parameter "gender"))
+         (status (hunchentoot:post-parameter "status"))
+         (birthday (hunchentoot:post-parameter "birthday"))
+         (identification (hunchentoot:post-parameter "identification"))
+         (race (hunchentoot:post-parameter "race"))
+         (color (hunchentoot:post-parameter "color"))
+         (weight (hunchentoot:post-parameter "weight"))
          (id (db cat/create
                  name
-                 birthdate
-                 presence)))
+                 gender
+                 status
+                 birthday
+                 identification
+                 race
+                 color
+                 weight)))
     (restas:redirect 'cat/get-one :id id)))
