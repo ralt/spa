@@ -33,11 +33,11 @@
                        :types types))
               :form (spa.history:add
                      (list
+                      :action (concat "/history/add/" (write-to-string (getf cat :id)))
                       :types (spa.type:select
                               (list
                                :types types))
                       :catname (getf cat :name)
-                      :catid (getf cat :id)
                       :date (format nil
                                     "~2,'0d-~2,'0d-~2,'0d"
                                     (local-time:timestamp-year now)

@@ -10,3 +10,20 @@
          (timestamp (format nil "~a ~a" date time)))
     (db history/create catid type userid comment timestamp)
     (restas:redirect 'cat/get-one :id catid)))
+
+(restas:define-route history/get-edit ("history/:id/edit" :method :get)
+  (let ((history (db history/get-one id)))
+    (spa.layout:main
+     (list
+      :title "Edit history"
+      :body (spa.history:add
+             (list
+              :action (concat "/history/" id "/edit")
+              :types (spa.type:select
+                      (list
+                       :types (db type/get-all '((getf history :id)))))
+              :catname (getf history :catname)
+              :catid (getf history :catid)
+              :comment (getf history :comment)
+              :date (getf history :date)
+              :time (getf history :time)))))))

@@ -1,7 +1,7 @@
 {namespace spa.history}
 
 {template add}
-  <form method="post" action="/history/add/{$catid}">
+  <form method="post" action="{$action}">
     <fieldset>
       <legend>Ajouter un suivi pour {$catname}</legend>
       <label>
@@ -11,7 +11,7 @@
 
       <label>
         <span>Commentaire (optionnel)</span>
-        <textarea name="comment"></textarea>
+        <textarea name="comment">{$comment}</textarea>
       </label>
 
       <label>

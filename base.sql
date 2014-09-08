@@ -26,6 +26,7 @@ CREATE TABLE IF NOT EXISTS users (
 );
 
 CREATE TABLE IF NOT EXISTS history (
+       id serial PRIMARY KEY,
        cat bigint references cat(id),
        type bigint references type(id),
        users bigint references users(id),
