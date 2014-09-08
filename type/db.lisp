@@ -1,6 +1,20 @@
 (in-package #:spa)
 
-(postmodern:defprepared type/get-all
+(defun type/get-all (filters)
+  (let ((types (ps-type/get-all)))
+    (loop for type in types
+         collect (list
+                  :id (getf type :id)
+                  :name (getf type :name)
+                  :selected (type/selected-p type filters)))))
+
+(defun type/selected-p (type filters)
+  (some #'(lambda (filter)
+            (when (stringp filter)
+              (= (getf type :id) (parse-integer filter :junk-allowed t))))
+        filters))
+
+(postmodern:defprepared ps-type/get-all
     "SELECT id, name FROM type" :plists)
 
 (postmodern:defprepared-with-names type/create (name)

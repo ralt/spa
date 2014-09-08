@@ -5,7 +5,7 @@
   (declare (ignore end))
   (let ((timestamp (local-time:universal-to-timestamp value)))
     (format nil
-            "~2,'0a/~2,'0a/~a"
+            "~a/~a/~a"
             (local-time:timestamp-day timestamp)
             (local-time:timestamp-month timestamp)
             (local-time:timestamp-year timestamp))))

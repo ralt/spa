@@ -22,7 +22,7 @@
 
 {template show}
   <label>
-    <input type="checkbox" name="type" value="{$id}">
+    <input type="checkbox" name="types" value="{$id}" {if $selected}checked{/if}>
     <span>{$name}</span>
   </label>
 {/template}

@@ -14,11 +14,12 @@
   (let ((id (hunchentoot:get-parameter "id")))
     (restas:redirect 'cat/get-one :id id)))
 
-(restas:define-route cat/get-one ("cat/:id")
+(restas:define-route cat/get-one ("cat/:id" :method :get)
   (check-login)
   (let* ((id (parse-integer id :junk-allowed t))
          (cat (db cat/get-by-id id))
-         (types (db type/get-all))
+         (type-filters (split-sequence:split-sequence #\Comma (hunchentoot:get-parameter "types")))
+         (types (db type/get-all type-filters))
          (now (local-time:now)))
     (spa.layout:cat
      (list
@@ -49,7 +50,7 @@
                                     (local-time:timestamp-second now))))
               :histories (spa.history:show-all
                           (list
-                           :histories (db history/get-all-by-cat-id id)))))))))
+                           :histories (db history/get-all-by-cat-id id type-filters)))))))))
 
 (restas:define-route cat/get-add ("cat/add" :method :get)
   (check-login)
