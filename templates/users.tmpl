@@ -1,6 +1,17 @@
 {namespace spa.users}
 
 {template add}
+  <form method="post">
+    <fieldset>
+      <legend>Ajouter un utilisateur</legend>
+      <label>
+        <span>Nom</span>
+        <input type="text" name="name" required>
+      </label>
+      
+      <input type="submit" value="Ajouter">
+    </fieldset>
+  </form>
 {/template}
 
 {template login}
