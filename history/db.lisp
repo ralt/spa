@@ -17,4 +17,5 @@ FROM history h
 LEFT JOIN type t ON h.type = t.id
 LEFT JOIN users u ON h.users = u.id
 WHERE h.cat = $1
+ORDER BY time DESC
 " id) :plists)
