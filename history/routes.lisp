@@ -1,0 +1,12 @@
+(in-package #:spa)
+
+(restas:define-route history/post-add ("history/add/:catid" :method :post)
+  (check-login)
+  (let* ((type (hunchentoot:post-parameter "type"))
+         (comment (hunchentoot:post-parameter "comment"))
+         (userid (hunchentoot:session-value :userid))
+         (date (hunchentoot:post-parameter "date"))
+         (time (hunchentoot:post-parameter "time"))
+         (timestamp (format nil "~a ~a" date time)))
+    (db history/create catid type userid comment timestamp)
+    (restas:redirect 'cat/get-one :id catid)))

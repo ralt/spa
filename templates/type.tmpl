@@ -13,3 +13,29 @@
     </fieldset>
   </form>
 {/template}
+
+{template showAll}
+  {foreach $type in $types}
+    {call show data="$type" /}
+  {/foreach}
+{/template}
+
+{template show}
+  <label>
+    <input type="checkbox" name="type" value="{$id}">
+    <span>{$name}</span>
+  </label>
+{/template}
+
+{template select}
+  <select name="type" required>
+    <option>Choisissez un type de suivi</option>
+    {foreach $type in $types}
+      {call show-option data="$type" /}
+    {/foreach}
+  </select>
+{/template}
+
+{template showOption}
+  <option value="{$id}">{$name}</option>
+{/template}

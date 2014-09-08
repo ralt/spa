@@ -12,20 +12,25 @@
                :CLOSURE-TEMPLATE
                :POSTMODERN
                :ALEXANDRIA
+               :LOCAL-TIME
                :restas-directory-publisher)
   :components ((:closure-template "templates/layout")
                (:closure-template "templates/cat")
                (:closure-template "templates/users")
                (:closure-template "templates/status")
                (:closure-template "templates/type")
+               (:closure-template "templates/history")
                (:file "defmodule")
                (:file "spa")
                (:file "cat/db")
                (:file "cat/routes")
+               (:file "cat/print-directives")
                (:file "users/db")
                (:file "users/routes")
                (:file "users/checker")
                (:file "status/db")
                (:file "status/routes")
                (:file "type/db")
-               (:file "type/routes")))
+               (:file "type/routes")
+               (:file "history/db")
+               (:file "history/routes")))

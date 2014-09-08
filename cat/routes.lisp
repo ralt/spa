@@ -17,7 +17,9 @@
 (restas:define-route cat/get-one ("cat/:id")
   (check-login)
   (let* ((id (parse-integer id :junk-allowed t))
-         (cat (db cat/get-by-id id)))
+         (cat (db cat/get-by-id id))
+         (types (db type/get-all))
+         (now (local-time:now)))
     (spa.layout:cat
      (list
       :title (getf cat :name)
@@ -25,8 +27,29 @@
       :body (spa.cat:view
              (list
               :cat cat
-              :types (db type/get-all)
-              :histories (db cat/get-histories-by-cat-id id)))))))
+              :types (spa.type:show-all
+                      (list
+                       :types types))
+              :form (spa.history:add
+                     (list
+                      :types (spa.type:select
+                              (list
+                               :types types))
+                      :catname (getf cat :name)
+                      :catid (getf cat :id)
+                      :date (format nil
+                                    "~2,'0d-~2,'0d-~2,'0d"
+                                    (local-time:timestamp-year now)
+                                    (local-time:timestamp-month now)
+                                    (local-time:timestamp-day now))
+                      :time (format nil
+                                    "~2,'0d:~2,'0d:~2,'0d"
+                                    (local-time:timestamp-hour now)
+                                    (local-time:timestamp-minute now)
+                                    (local-time:timestamp-second now))))
+              :histories (spa.history:show-all
+                          (list
+                           :histories (db history/get-all-by-cat-id id)))))))))
 
 (restas:define-route cat/get-add ("cat/add" :method :get)
   (check-login)

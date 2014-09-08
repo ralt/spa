@@ -13,13 +13,11 @@
   <div class="history">
 
     <div class="add-history">
-      {$form}
+      {$form|noAutoescape}
     </div>
 
     <div id="types" class="types">
-      {foreach $type in $types}
-        {call show-type data="$type" /}
-      {/foreach}
+      {$types|noAutoescape}
     </div>
 
     <table class="history-table">
@@ -30,20 +28,11 @@
         <th>Auteur</th>
       </thead>
       <tbody>
-        {foreach $history in $histories}
-          {call show-history data="$history" /}
-        {/foreach}
+        {$histories|noAutoescape}
       </tbody>
     </table>
 
   </div>
-{/template}
-
-{template showType}
-  <label>
-    <input type="checkbox" name="type" value="{$id}">
-    <span>{$name}</span>
-  </label>
 {/template}
 
 {template showCat}
@@ -52,7 +41,11 @@
   </div>
   
   <div class="gender">
-    {$gender}
+    {if $gender}
+      Femelle
+    {else}
+      Mâle
+    {/if}
   </div>
   
   <div class="birthday">
@@ -60,7 +53,7 @@
       Date de naissance
     </div>
     <div class="field-value">
-      {$birthday}
+      {$birthday|date}
     </div>
   </div>
   
@@ -90,48 +83,6 @@
       {$weight}
     </div>
   </div>
-{/template}
-
-{template showHistory}
-  <tr>
-    <td>{$type}</td>
-    <td>{$date}</td>
-    <td>{$comment}</td>
-    <td>{$author}</td>
-  </tr>
-{/template}
-
-{template historyadd}
-  <form method="post">
-    <fieldset>
-      <legend>Ajouter un suivi pour {$catname}</legend>
-      <label>
-        <span>Type de suivi</span>
-        <select name="type" required>
-          <option>Choisissez un type de suivi</option>
-          {foreach $type in $types}
-            {call show-type-option data="$type" /}
-          {/foreach}
-        </select>
-      </label>
-
-      <label>
-        <span>Commentaire (optionnel)</span>
-        <textarea name="comment"></textarea>
-      </label>
-
-      <label>
-        <span>Date du suivi</span>
-        <input type="date" name="date">
-      </label>
-
-      <input type="submit" value="Ajouter le suivi">
-    </fieldset>
-  </form>
-{/template}
-
-{template showTypeOption}
-  <option value="{$id}">{$name}</option>
 {/template}
 
 {template add}

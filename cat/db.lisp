@@ -2,9 +2,10 @@
 
 (postmodern:defprepared-with-names cat/get-by-id (id)
   ("
-SELECT name
-FROM cat
-WHERE id = $1
+SELECT c.id, c.name, c.gender, s.name as status, c.birthday, c.identification, c.race, c.color, c.weight
+FROM cat c
+LEFT JOIN status s ON s.id = c.status
+WHERE c.id = $1
 " id) :plist)
 
 (postmodern:defprepared-with-names cat/create (name
@@ -23,12 +24,3 @@ RETURNING id
 
 (postmodern:defprepared cat/get-all
     "SELECT id, name FROM cat" :plists)
-
-(postmodern:defprepared-with-names cat/get-histories-by-cat-id (id)
-  ("
-SELECT t.name, h.time, h.comment, u.name
-FROM history h
-LEFT JOIN type t ON h.type = t.id
-LEFT JOIN users u ON h.users = u.id
-WHERE h.cat = $1
-" id) :plists)

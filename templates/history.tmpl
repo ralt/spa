@@ -1,0 +1,41 @@
+{namespace spa.history}
+
+{template add}
+  <form method="post" action="/history/add/{$catid}">
+    <fieldset>
+      <legend>Ajouter un suivi pour {$catname}</legend>
+      <label>
+        <span>Type de suivi</span>
+        {$types|noAutoescape}
+      </label>
+
+      <label>
+        <span>Commentaire (optionnel)</span>
+        <textarea name="comment"></textarea>
+      </label>
+
+      <label>
+        <span>Date du suivi</span>
+        <input type="date" name="date" value="{$date}">
+        <input type="time" name="time" value="{$time}">
+      </label>
+
+      <input type="submit" value="Ajouter le suivi">
+    </fieldset>
+  </form>
+{/template}
+
+{template showAll}
+  {foreach $history in $histories}
+    {call show data="$history" /}
+  {/foreach}
+{/template}
+
+{template show}
+  <tr>
+    <td>{$type}</td>
+    <td>{$date|date}</td>
+    <td>{$comment}</td>
+    <td>{$author}</td>
+  </tr>
+{/template}
