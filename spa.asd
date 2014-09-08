@@ -24,6 +24,7 @@
                (:file "cat/routes")
                (:file "users/db")
                (:file "users/routes")
+               (:file "users/checker")
                (:file "status/db")
                (:file "status/routes")
                (:file "type/db")
