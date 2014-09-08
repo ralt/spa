@@ -17,9 +17,6 @@ RETURNING id
 (postmodern:defprepared cat/get-all
     "SELECT id, name FROM cat" :plists)
 
-(postmodern:defprepared cat/get-all-types
-    "SELECT id, name FROM type" :plists)
-
 (postmodern:defprepared-with-names cat/get-histories-by-cat-id (id)
   ("
 SELECT t.name, h.time, h.comment, u.name

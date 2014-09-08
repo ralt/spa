@@ -22,7 +22,7 @@
       :body (spa.cat:view
              (list
               :cat cat
-              :types (db cat/get-all-types)
+              :types (db type/get-all)
               :histories (db cat/get-histories-by-cat-id id)))))))
 
 (restas:define-route cat/get-add ("cat/add" :method :get)
