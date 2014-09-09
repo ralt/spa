@@ -3,7 +3,7 @@
 {template add}
   <form method="post" action="{$action}">
     <fieldset>
-      <legend>Ajouter un suivi pour {$catname}</legend>
+      <legend>{$title} pour {$catname}</legend>
       <label>
         <span>Type de suivi</span>
         {$types|noAutoescape}
@@ -20,7 +20,7 @@
         <input type="time" name="time" value="{$time}">
       </label>
 
-      <input type="submit" value="Ajouter le suivi">
+      <input type="submit" value="{$button}">
     </fieldset>
   </form>
 {/template}

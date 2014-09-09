@@ -31,3 +31,24 @@ FROM history h
 LEFT JOIN cat c ON h.cat = c.id
 WHERE h.id = $1
 " id) :plist)
+
+(postmodern:defprepared-with-names history/update-one (id
+                                                       type
+                                                       comment
+                                                       time)
+  ("
+UPDATE history
+SET
+type = $1,
+comment = $2,
+time = $3
+WHERE id = $4
+" type comment time id) :none)
+
+(postmodern:defprepared-with-names history/get-cat-by-history-id (id)
+  ("
+SELECT c.id, c.name
+FROM cat c
+LEFT JOIN history h on c.id = h.cat
+WHERE h.id = $1
+" id) :plist)
