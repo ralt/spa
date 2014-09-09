@@ -1,8 +1,27 @@
 body {
-    margin: 0;
+    margin: 10px;
     padding: 0;
 }
 
 label {
     display: block;
+}
+
+legend.collapsible {
+    color: #428bca;
+    cursor: pointer;
+}
+
+legend.collapsible:hover {
+    text-decoration: underline;
+    color: #2a6496;
+}
+
+legend {
+    font-size: 16px;
+    margin-bottom: 10px;
+}
+
+#select-form {
+    margin-top: 10px;
 }

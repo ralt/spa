@@ -21,4 +21,4 @@
   (spa.layout:main
    (list
     :title "SPA"
-    :body "Front page")))
+    :body "Frontpage")))

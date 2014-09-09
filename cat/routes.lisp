@@ -7,7 +7,10 @@
      (list
       :title "All cats"
       :cats cats
-      :body ""))))
+      :onhome t
+      :body (spa.cat:links
+             (list
+              :cats (db cat/get-all)))))))
 
 (restas:define-route cat/goto ("cat/goto")
   (check-login)

@@ -22,26 +22,28 @@
         {$types|noAutoescape}
       </form>
 
-      <table class="history-table">
-        <thead>
-          <th>Type</th>
-          <th>Date</th>
-          <th>Commentaire</th>
-          <th>Auteur</th>
-        </thead>
-        <tbody>
+      <div class="table-responsive">
+        <table class="history-table table table-striped">
+          <thead>
+            <th>Type</th>
+            <th>Date</th>
+            <th>Commentaire</th>
+            <th>Auteur</th>
+          </thead>
+          <tbody>
           {$histories|noAutoescape}
-        </tbody>
-      </table>
+          </tbody>
+        </table>
+      </div>
     </fieldset>
 
   </div>
 {/template}
 
 {template showCat}
-  <div class="name">
+  <h1 class="name">
     {$name}
-  </div>
+  </h1>
 
   <fieldset>
     <legend class="collapsible collapsed">Infos</legend>
@@ -151,4 +153,28 @@
       <input type="submit" value="Ajouter le chat">
     </fieldset>
   </form>
+{/template}
+
+{template links}
+  <hr>
+  
+  <div class="link">
+    <a href="/cat/add">
+      Ajouter un chat
+    </a>
+  </div>
+
+  <hr>
+  
+  {foreach $cat in $cats}
+    {call show-link data="$cat" /}
+  {/foreach}
+{/template}
+
+{template showLink}
+  <div class="link">
+    <a href="/cat/{$id}">
+      {$name}
+    </a>
+  </div>
 {/template}
