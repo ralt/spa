@@ -16,7 +16,7 @@ VALUES ($1, $2, $3, $4, $5)
               (string= (car type-filters) ""))
       (setf filters ""))
     (postmodern:query (concat "
-SELECT t.name as type, h.time as date, h.comment as comment, u.name as author
+SELECT h.id, t.name as type, h.time as date, h.comment as comment, u.name as author
 FROM history h
 LEFT JOIN type t ON h.type = t.id
 LEFT JOIN users u ON h.users = u.id

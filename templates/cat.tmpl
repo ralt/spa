@@ -16,21 +16,24 @@
       {$form|noAutoescape}
     </div>
 
-    <form method="get" id="types" class="types">
-      {$types|noAutoescape}
-    </form>
+    <fieldset>
+      <legend>Suivi</legend>
+      <form method="get" id="types" class="types">
+        {$types|noAutoescape}
+      </form>
 
-    <table class="history-table">
-      <thead>
-        <th>Type</th>
-        <th>Date</th>
-        <th>Commentaire</th>
-        <th>Auteur</th>
-      </thead>
-      <tbody>
-        {$histories|noAutoescape}
-      </tbody>
-    </table>
+      <table class="history-table">
+        <thead>
+          <th>Type</th>
+          <th>Date</th>
+          <th>Commentaire</th>
+          <th>Auteur</th>
+        </thead>
+        <tbody>
+          {$histories|noAutoescape}
+        </tbody>
+      </table>
+    </fieldset>
 
   </div>
 {/template}
@@ -39,50 +42,53 @@
   <div class="name">
     {$name}
   </div>
-  
-  <div class="gender">
-    {if $gender}
-      Femelle
-    {else}
+
+  <fieldset>
+    <legend>Infos</legend>
+    <div class="gender">
+      {if $gender}
+        Femelle
+      {else}
       Mâle
     {/if}
-  </div>
-  
-  <div class="birthday">
-    <div class="field-name">
-      Date de naissance
     </div>
-    <div class="field-value">
-      {$birthday|date}
+    
+    <div class="birthday">
+      <div class="field-name">
+        Date de naissance
+      </div>
+      <div class="field-value">
+        {$birthday|date}
+      </div>
     </div>
-  </div>
-  
-  <div class="status">
-    <div class="field-name">
-      Status
+    
+    <div class="status">
+      <div class="field-name">
+        Status
+      </div>
+      <div class="field-value">
+        {$status}
+      </div>
     </div>
-    <div class="field-value">
-      {$status}
+    
+    <div class="identification">
+      <div class="field-name">
+        Identification
+      </div>
+      <div class="field-value">
+        {$identification}
+      </div>
     </div>
-  </div>
-  
-  <div class="identification">
-    <div class="field-name">
-      Identification
+    
+    <div class="weight">
+      <div class="field-name">
+        Poids
+      </div>
+      <div class="field-value">
+        {$weight}
+      </div>
     </div>
-    <div class="field-value">
-      {$identification}
-    </div>
-  </div>
-  
-  <div class="weight">
-    <div class="field-name">
-      Poids
-    </div>
-    <div class="field-value">
-      {$weight}
-    </div>
-  </div>
+  </fieldset>
 {/template}
 
 {template add}
