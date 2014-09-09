@@ -17,7 +17,7 @@
     </div>
 
     <fieldset>
-      <legend>Suivi</legend>
+      <legend class="collapsible">Suivi</legend>
       <form method="get" id="types" class="types">
         {$types|noAutoescape}
       </form>
@@ -44,7 +44,7 @@
   </div>
 
   <fieldset>
-    <legend>Infos</legend>
+    <legend class="collapsible collapsed">Infos</legend>
     <div class="gender">
       {if $gender}
         Femelle
@@ -87,6 +87,10 @@
       <div class="field-value">
         {$weight}
       </div>
+    </div>
+
+    <div class="edit">
+      <a href="/cat/{$id}/edit">modifier</a>
     </div>
   </fieldset>
 {/template}

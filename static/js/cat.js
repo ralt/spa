@@ -35,4 +35,30 @@
 
         window.location.href = window.location.origin + window.location.pathname + '?types=' + finals.join(',');
     }
+
+    // Legends can be accordions
+    var $$ = function(s) { return document.querySelectorAll(s); };
+    var legends = $$('legend.collapsible');
+    for (var i = 0; i < legends.length; i++) {
+        handleCollapsibleLegend(legends[i]);
+    }
+
+    function handleCollapsibleLegend(legend) {
+        var hidden = false;
+        legend.onclick = function() {
+            var el = legend.nextSibling;
+            while (el = el.nextSibling) {
+                if (el.nodeType !== 1) continue;
+                
+                el.style.display = !hidden ? 'none' : 'block';
+                el = el.nextSibling;
+            }
+            hidden = !hidden;
+        };
+    }
+
+    var collapsedLegends = $$('legend.collapsible.collapsed');
+    for (var i = 0; i < collapsedLegends.length; i++) {
+        collapsedLegends[i].click();
+    }
 }());
