@@ -61,6 +61,7 @@
     :title "Add a cat"
     :body (spa.cat:add
            (list
+            :title "Ajout d'un chat"
             :status (spa.status:select
                      (list
                       :statuses (db status/get-all))))))))
@@ -85,3 +86,52 @@
                  color
                  weight)))
     (restas:redirect 'cat/get-one :id id)))
+
+(restas:define-route cat/get-edit ("cat/:id/edit" :method :get)
+  (check-login)
+  (let* ((cat (db cat/get-by-id id))
+         (birthday (local-time:universal-to-timestamp (getf cat :birthday))))
+    (spa.layout:main
+     (list
+      :title (concat "Edit the cat " (getf cat :name))
+      :body (spa.cat:add
+             (list
+              :title (concat "Modifier le chat " (getf cat :name))
+              :name (getf cat :name)
+              :gender (if (getf cat :gender)
+                          "1" ; females are T
+                          "0")
+              :birthday (format nil
+                                "~2,'0d-~2,'0d-~2,'0d"
+                                (local-time:timestamp-year birthday)
+                                (local-time:timestamp-month birthday)
+                                (local-time:timestamp-day birthday))
+              :identification (getf cat :identification)
+              :race (getf cat :race)
+              :color (getf cat :color)
+              :weight (getf cat :weight)
+              :status (spa.status:select
+                       (list
+                        :statuses (db status/get-all-for-cat (getf cat :statusid))))))))))
+
+(restas:define-route cat/post-edit ("cat/:id/edit" :method :post)
+  (let* ((name (hunchentoot:post-parameter "name"))
+         (gender (hunchentoot:post-parameter "gender"))
+         (status (hunchentoot:post-parameter "status"))
+         (birthday (hunchentoot:post-parameter "birthday"))
+         (identification (hunchentoot:post-parameter "identification"))
+         (race (hunchentoot:post-parameter "race"))
+         (color (hunchentoot:post-parameter "color"))
+         (weight (hunchentoot:post-parameter "weight")))
+    (db cat/update
+        id
+        name
+        gender
+        status
+        birthday
+        identification
+        race
+        color
+        weight)
+    (restas:redirect 'cat/get-one :id id)))
+

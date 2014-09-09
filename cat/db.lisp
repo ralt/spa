@@ -2,7 +2,7 @@
 
 (postmodern:defprepared-with-names cat/get-by-id (id)
   ("
-SELECT c.id, c.name, c.gender, s.name as status, c.birthday, c.identification, c.race, c.color, c.weight
+SELECT c.id, c.name, c.gender, s.name as status, c.status as statusid, c.birthday, c.identification, c.race, c.color, c.weight
 FROM cat c
 LEFT JOIN status s ON s.id = c.status
 WHERE c.id = $1
@@ -24,3 +24,26 @@ RETURNING id
 
 (postmodern:defprepared cat/get-all
     "SELECT id, name FROM cat" :plists)
+
+(postmodern:defprepared-with-names cat/update (id
+                                               name
+                                               gender
+                                               status
+                                               birthday
+                                               identification
+                                               race
+                                               color
+                                               weight)
+  ("
+UPDATE cat
+SET
+    name = $2,
+    gender = $3,
+    status = $4,
+    birthday = $5,
+    identification = $6,
+    race = $7,
+    color = $8,
+    weight = $9
+WHERE id = $1
+" id name gender status birthday identification race color weight) :none)

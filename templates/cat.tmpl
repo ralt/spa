@@ -94,22 +94,22 @@
 {template add}
   <form method="post" class="cat-form">
     <fieldset>
-      <legend>Ajout d'un chat</legend>
+      <legend>{$title}</legend>
 
       <label>
         <span>Nom du chat</span>
-        <input type="text" name="name" required>
+        <input type="text" name="name" value="{$name}" required>
       </label>
 
       <div class="gender">
         <span>Gendre du chat</span>
         <label>
-          <input type="radio" name="gender" value="0" required>
+          <input type="radio" name="gender" value="0" {if strContains($gender, '0')}checked{/if} required>
           <span>Mâle</span>
         </label>
 
         <label>
-          <input type="radio" name="gender" value="1" required>
+          <input type="radio" name="gender" value="1" {if strContains($gender, '1')}checked{/if} required>
           <span>Femelle</span>
         </label>
       </div>
@@ -121,27 +121,27 @@
       
       <label>
         <span>Date de naissance du chat</span>
-        <input type="date" name="birthday">
+        <input type="date" name="birthday" value="{$birthday}">
       </label>
 
       <label>
         <span>Identification</span>
-        <input type="text" maxlength="255" name="identification">
+        <input type="text" maxlength="255" name="identification" value="{$identification}">
       </label>
 
       <label>
         <span>Race</span>
-        <input type="text" maxlength="255" name="race">
+        <input type="text" maxlength="255" name="race" value="{$race}">
       </label>
 
       <label>
         <span>Robe</span>
-        <input type="text" maxlength="255" name="color">
+        <input type="text" maxlength="255" name="color" value="{$color}">
       </label>
 
       <label>
         <span>Poids</span>
-        <input type="text" maxlength="50" name="weight">
+        <input type="text" maxlength="50" name="weight" value="{$weight}">
       </label>
 
       <input type="submit" value="Ajouter le chat">
