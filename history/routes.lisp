@@ -25,7 +25,7 @@
               :action (concat "/history/" id "/edit")
               :types (spa.type:select
                       (list
-                       :types (db type/get-all (list (write-to-string (getf history :id))))))
+                       :types (db type/get-all (list (write-to-string (getf history :type))))))
               :catname (getf history :catname)
               :catid (getf history :catid)
               :comment (getf history :comment)

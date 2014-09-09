@@ -27,7 +27,7 @@ ORDER BY time DESC
 
 (postmodern:defprepared-with-names history/get-one (id)
   ("
-SELECT h.id as id, c.name as catname, c.id as catid, h.time, h.comment
+SELECT h.id as id, c.name as catname, c.id as catid, h.time, h.comment, h.type
 FROM history h
 LEFT JOIN cat c ON h.cat = c.id
 WHERE h.id = $1
