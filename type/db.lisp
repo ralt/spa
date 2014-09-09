@@ -10,8 +10,8 @@
 
 (defun type/selected-p (type filters)
   (some #'(lambda (filter)
-            (when (stringp filter)
-              (= (getf type :id) (parse-integer filter :junk-allowed t))))
+            (when (and (stringp filter) (not (string= "" filter)))
+              (= (getf type :id) (parse-integer filter :junk-allowed nil))))
         filters))
 
 (postmodern:defprepared ps-type/get-all

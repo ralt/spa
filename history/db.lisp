@@ -12,7 +12,8 @@ VALUES ($1, $2, $3, $4, $5)
 
 (defun history/get-all-by-cat-id (id type-filters)
   (let ((filters (format nil " AND ( ~{ t.id = ~a ~^OR ~} ) " type-filters)))
-    (when (not (car type-filters))
+    (when (or (not (car type-filters))
+              (string= (car type-filters) ""))
       (setf filters ""))
     (postmodern:query (concat "
 SELECT t.name as type, h.time as date, h.comment as comment, u.name as author
