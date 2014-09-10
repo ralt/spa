@@ -22,7 +22,8 @@ CREATE TABLE IF NOT EXISTS type (
 
 CREATE TABLE IF NOT EXISTS users (
        id serial PRIMARY KEY,
-       name varchar(255) UNIQUE NOT NULL
+       name varchar(255) UNIQUE NOT NULL,
+       pass varchar(255) NOT NULL
 );
 
 CREATE TABLE IF NOT EXISTS history (

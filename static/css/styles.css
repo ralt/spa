@@ -3,6 +3,10 @@ body {
     padding: 0;
 }
 
+.clearfix {
+    clear: both;
+}
+
 label {
     display: block;
 }
@@ -20,8 +24,55 @@ legend.collapsible:hover {
 legend {
     font-size: 16px;
     margin-bottom: 10px;
+    padding-top: 15px;
 }
 
 #select-form {
     margin-top: 10px;
+}
+
+.top-links .home {
+    float: left;
+}
+
+.top-links .logout {
+    float: right;
+}
+
+label {
+    font-weight: normal;
+}
+
+.field-name,
+.field-value {
+    width: 49%;
+    display: inline-block;
+}
+
+.field-name {
+    font-style: italic;
+}
+
+.field-wrapper.even {
+    background-color: #f9f9f9;
+}
+
+.field-wrapper {
+    padding: 8px 0;
+    border-top: 1px solid #ddd;
+}
+
+.edit {
+    float: right;
+    padding: 5px;
+}
+
+h1 {
+    margin-bottom: 0;
+}
+
+.history-table td.comment div {
+    max-width: 100px;
+    text-overflow: ellipsis;
+    overflow: hidden;
 }

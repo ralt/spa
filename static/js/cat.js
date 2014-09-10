@@ -50,7 +50,7 @@
             while (el = el.nextSibling) {
                 if (el.nodeType !== 1) continue;
                 
-                el.style.display = !hidden ? 'none' : 'block';
+                el.style.display = !hidden ? 'none' : '';
                 el = el.nextSibling;
             }
             hidden = !hidden;
@@ -60,5 +60,33 @@
     var collapsedLegends = $$('legend.collapsible.collapsed');
     for (var i = 0; i < collapsedLegends.length; i++) {
         collapsedLegends[i].click();
+    }
+
+    function isEllipsisActive(e) {
+        return (e.offsetWidth < e.scrollWidth);
+    }
+
+    // It's a div because: http://stackoverflow.com/a/14643089/851498
+    var divs = $$('.history-table td.comment div');
+    for (var i = 0; i < divs.length; i++) {
+        handleTableCell(divs[i]);
+    }
+
+    function handleTableCell(el) {
+        if (!isEllipsisActive(el)) return;
+
+        var open = false;
+        el.onclick = function() {
+            if (!open) {
+                el.style.overflow = 'visible';
+                el.style.wordBreak = 'break-word';
+                el.style.whiteSpace = 'normal';
+            }
+            else {
+                // Quick & dirty hack to reset the style properties
+                el.setAttribute('style', '');
+            }
+            open = !open;
+        };
     }
 }());

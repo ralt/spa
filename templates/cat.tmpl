@@ -47,15 +47,20 @@
 
   <fieldset>
     <legend class="collapsible collapsed">Infos</legend>
-    <div class="gender">
-      {if $gender}
-        Femelle
-      {else}
-      Mâle
-    {/if}
+    <div class="gender odd field-wrapper">
+      <div class="field-name">
+        Sexe
+      </div>
+      <div class="field-value">
+        {if $gender}
+          Femelle
+        {else}
+          Mâle
+        {/if}
+      </div>
     </div>
     
-    <div class="birthday">
+    <div class="birthday field-wrapper even">
       <div class="field-name">
         Date de naissance
       </div>
@@ -64,7 +69,7 @@
       </div>
     </div>
     
-    <div class="status">
+    <div class="status field-wrapper odd">
       <div class="field-name">
         Status
       </div>
@@ -73,7 +78,7 @@
       </div>
     </div>
     
-    <div class="identification">
+    <div class="identification field-wrapper even">
       <div class="field-name">
         Identification
       </div>
@@ -82,7 +87,7 @@
       </div>
     </div>
     
-    <div class="weight">
+    <div class="weight field-wrapper odd">
       <div class="field-name">
         Poids
       </div>
@@ -104,7 +109,7 @@
 
       <label>
         <span>Nom du chat</span>
-        <input type="text" name="name" value="{$name}" required>
+        <input class="form-control" type="text" name="name" value="{$name}" required>
       </label>
 
       <div class="gender">
@@ -127,30 +132,30 @@
       
       <label>
         <span>Date de naissance du chat</span>
-        <input type="date" name="birthday" value="{$birthday}">
+        <input class="form-control" type="date" name="birthday" value="{$birthday}">
       </label>
 
       <label>
         <span>Identification</span>
-        <input type="text" maxlength="255" name="identification" value="{$identification}">
+        <input class="form-control" type="text" maxlength="255" name="identification" value="{$identification}">
       </label>
 
       <label>
         <span>Race</span>
-        <input type="text" maxlength="255" name="race" value="{$race}">
+        <input class="form-control" type="text" maxlength="255" name="race" value="{$race}">
       </label>
 
       <label>
         <span>Robe</span>
-        <input type="text" maxlength="255" name="color" value="{$color}">
+        <input class="form-control" type="text" maxlength="255" name="color" value="{$color}">
       </label>
 
       <label>
         <span>Poids</span>
-        <input type="text" maxlength="50" name="weight" value="{$weight}">
+        <input class="form-control" type="text" maxlength="50" name="weight" value="{$weight}">
       </label>
 
-      <input type="submit" value="Ajouter le chat">
+      <input class="form-control btn btn-default" type="submit" value="Ajouter le chat">
     </fieldset>
   </form>
 {/template}

@@ -11,6 +11,13 @@
     <link rel="stylesheet" href="/static/css/styles.css">
   </head>
   <body>
+    <div class="top-links">
+      {if not $isnotlogged}
+        <a class="logout" href="/users/logout">Se déconnecter</a>
+      {/if}
+
+      <div class="clearfix"></div>
+    </div>
     {$body|noAutoescape}
   </body>
 </html>
@@ -27,9 +34,15 @@
     <link rel="stylesheet" href="/static/css/styles.css">
   </head>
   <body>
-    {if not $onhome}
-      <a href="/cat">Retour à l'accueil</a>
-    {/if}
+    <div class="top-links">
+      {if not $onhome}
+        <a class="home" href="/cat">Retour à l'accueil</a>
+      {/if}
+
+      <a class="logout" href="/users/logout">Se déconnecter</a>
+
+      <div class="clearfix"></div>
+    </div>
     <form id="select-form" class="select" method="get" action="/cat/goto">
       <select id="select-cat" name="id" class="form-control">
         <option>Choisissez un chat</option>

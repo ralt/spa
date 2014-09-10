@@ -6,29 +6,35 @@
       <legend>Ajouter un utilisateur</legend>
       <label>
         <span>Nom</span>
-        <input type="text" name="name" required>
+        <input class="form-control" type="text" name="name" required>
+      </label>
+
+      <label>
+        <span>Mot de passe</span>
+        <input class="form-control" type="text" name="pass" required>
       </label>
       
-      <input type="submit" value="Ajouter">
+      <input class="form-control btn btn-default" type="submit" value="Ajouter">
     </fieldset>
   </form>
 {/template}
 
 {template login}
-<form method="post">
+<form method="post" role="form">
   <fieldset>
-    <legend>Choisissez votre identité</legend>
-    <select name="users">
-      {foreach $user in $users}
-        {call show-option data="$user" /}
-      {/foreach}
-    </select>
+    <legend>Rentrez vos identifiants</legend>
+    
+    <label class="form-group">
+      <span>Nom</span>
+      <input type="text" name="name" class="form-control" required>
+    </label>
 
-    <input type="submit" value="Se connecter">
+    <label class="form-group">
+      <span>Mot de passe</span>
+      <input type="password" name="pass" class="form-control" required>
+    </label>
+
+    <input type="submit" class="btn btn-default form-control" value="Se connecter">
   </fieldset>
 </form>
-{/template}
-
-{template showOption}
-  <option value="{$id}">{$name}</option>
 {/template}

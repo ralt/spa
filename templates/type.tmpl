@@ -6,10 +6,10 @@
       <legend>Ajouter un type de suivi</legend>
       <label>
         <span>Nom</span>
-        <input type="text" name="name" required>
+        <input class="form-control" type="text" name="name" required>
       </label>
 
-      <input type="submit" value="Ajouter">
+      <input class="form-control btn btn-default" type="submit" value="Ajouter">
     </fieldset>
   </form>
 {/template}
@@ -28,7 +28,7 @@
 {/template}
 
 {template select}
-  <select name="type" required>
+  <select class="form-control" name="type" required>
     <option>Choisissez un type de suivi</option>
     {foreach $type in $types}
       {call show-option data="$type" /}

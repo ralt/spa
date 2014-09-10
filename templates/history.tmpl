@@ -11,16 +11,16 @@
 
       <label>
         <span>Commentaire (optionnel)</span>
-        <textarea name="comment">{$comment}</textarea>
+        <textarea class="form-control" name="comment">{$comment}</textarea>
       </label>
 
       <label>
         <span>Date du suivi</span>
-        <input type="date" name="date" value="{$date}">
-        <input type="time" name="time" value="{$time}">
+        <input class="form-control" type="date" name="date" value="{$date}">
+        <input class="form-control" type="time" name="time" value="{$time}">
       </label>
 
-      <input type="submit" value="{$button}">
+      <input type="submit" class="form-control btn btn-default" value="{$button}">
     </fieldset>
   </form>
 {/template}
@@ -35,7 +35,7 @@
   <tr>
     <td>{$type}</td>
     <td>{$date|date}</td>
-    <td>{$comment}</td>
+    <td class="comment"><div>{$comment}</div></td>
     <td>{$author}</td>
     <td><a href="/history/{$id}/edit">modifier</a></td>
   </tr>
