@@ -36,7 +36,7 @@
                        :types types))
               :form (spa.history:add
                      (list
-                      :title "Ajouter le suivi"
+                      :title "Ajouter un suivi"
                       :button "Ajouter"
                       :action (concat "/history/add/" (write-to-string (getf cat :id)))
                       :types (spa.type:select

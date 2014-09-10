@@ -22,3 +22,6 @@
    (list
     :title "SPA"
     :body "Frontpage")))
+
+(defun main ()
+  (restas:start '#:spa :port 8080))
