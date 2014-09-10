@@ -37,6 +37,7 @@
 
 (restas:define-route users/post-add ("users/add" :method :post)
   (check-admin)
-  (let ((name (hunchentoot:post-parameter "name")))
-    (db users/create name)
+  (let ((name (hunchentoot:post-parameter "name"))
+        (pass (cl-pass:hash (hunchentoot:post-parameter "pass"))))
+    (db users/create name pass)
     (restas:redirect 'users/get-login)))
