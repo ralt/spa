@@ -11,22 +11,22 @@
   :depends-on (:RESTAS
                :CLOSURE-TEMPLATE
                :POSTMODERN
-               :ALEXANDRIA
                :LOCAL-TIME
                :CL-PASS
                :CL-JSON
                :restas-directory-publisher)
-  :components ((:closure-template "templates/layout")
+  :components ((:file "defmodule")
+               ;; Must be before the templates
+               (:file "cat/print-directives")
+               (:closure-template "templates/layout")
                (:closure-template "templates/status")
                (:closure-template "templates/type")
                (:closure-template "templates/users")
                (:closure-template "templates/history")
                (:closure-template "templates/cat")
-               (:file "defmodule")
                (:file "spa")
                (:file "cat/db")
                (:file "cat/routes")
-               (:file "cat/print-directives")
                (:file "users/db")
                (:file "users/routes")
                (:file "users/checker")

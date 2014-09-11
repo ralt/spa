@@ -28,7 +28,8 @@
     :title "SPA"
     :body "Frontpage")))
 
-(defun main ()
+(defun main (args)
+  (declare (ignore args))
   (set-config)
   (restas:start '#:spa :port 8080))
 
