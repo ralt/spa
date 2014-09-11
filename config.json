@@ -1,0 +1,6 @@
+{
+    "dbname": "spa",
+    "dbuser": "spa",
+    "dbpass": "password",
+    "dbhost": "localhost"
+}

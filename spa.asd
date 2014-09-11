@@ -14,6 +14,7 @@
                :ALEXANDRIA
                :LOCAL-TIME
                :CL-PASS
+               :CL-JSON
                :restas-directory-publisher)
   :components ((:closure-template "templates/layout")
                (:closure-template "templates/cat")
