@@ -7,4 +7,3 @@ install:
 
 clean:
 	rm -rf dist/
-	rm quicklisp-manifest.txt
