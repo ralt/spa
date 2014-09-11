@@ -17,10 +17,10 @@
                :CL-JSON
                :restas-directory-publisher)
   :components ((:closure-template "templates/layout")
-               (:closure-template "templates/cat")
-               (:closure-template "templates/users")
                (:closure-template "templates/status")
                (:closure-template "templates/type")
+               (:closure-template "templates/cat")
+               (:closure-template "templates/users")
                (:closure-template "templates/history")
                (:file "defmodule")
                (:file "spa")

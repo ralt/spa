@@ -15,11 +15,7 @@
         var inputs = typesForm.querySelectorAll('input');
 
         for (var i = 0; i < inputs.length; i++) {
-            (function(i) {
-                inputs[i].onchange = function() {
-                    submitTypes();
-                };
-            }(i));
+            inputs[i].onchange = submitTypes;
         }
     }
 
@@ -38,28 +34,33 @@
 
     // Legends can be accordions
     var $$ = function(s) { return document.querySelectorAll(s); };
+
+    var collapsedLegends = $$('legend.collapsible.collapsed');
+    for (var i = 0; i < collapsedLegends.length; i++) {
+        collapse(collapsedLegends[i], true);
+    }
+
     var legends = $$('legend.collapsible');
     for (var i = 0; i < legends.length; i++) {
         handleCollapsibleLegend(legends[i]);
     }
 
     function handleCollapsibleLegend(legend) {
-        var hidden = false;
         legend.onclick = function() {
-            var el = legend.nextSibling;
-            while (el = el.nextSibling) {
-                if (el.nodeType !== 1) continue;
-                
-                el.style.display = !hidden ? 'none' : '';
-                el = el.nextSibling;
-            }
-            hidden = !hidden;
+            collapse(legend, legend.classList.contains('opened'));
         };
     }
 
-    var collapsedLegends = $$('legend.collapsible.collapsed');
-    for (var i = 0; i < collapsedLegends.length; i++) {
-        collapsedLegends[i].click();
+    function collapse(legend, opened) {
+        var el = legend.nextSibling;
+        while (el = el.nextSibling) {
+            if (el.nodeType !== 1) continue;
+            
+            el.style.display = opened ? 'none' : '';
+            el = el.nextSibling;
+        }
+
+        legend.classList[opened ? 'remove' : 'add']('opened');
     }
 
     function isEllipsisActive(e) {
