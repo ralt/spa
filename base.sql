@@ -12,7 +12,8 @@ CREATE TABLE IF NOT EXISTS cat (
        weight varchar(50),
        race varchar(255),
        color varchar(255),
-       gender boolean
+       gender boolean,
+       description text
 );
 
 CREATE TABLE IF NOT EXISTS type (

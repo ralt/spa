@@ -79,6 +79,7 @@
          (race (hunchentoot:post-parameter "race"))
          (color (hunchentoot:post-parameter "color"))
          (weight (hunchentoot:post-parameter "weight"))
+         (description (hunchentoot:post-parameter "description"))
          (id (db cat/create
                  name
                  gender
@@ -87,7 +88,8 @@
                  identification
                  race
                  color
-                 weight)))
+                 weight
+                 description)))
     (restas:redirect 'cat/get-one :id id)))
 
 (restas:define-route cat/get-edit ("cat/:id/edit" :method :get)
@@ -113,6 +115,7 @@
               :race (getf cat :race)
               :color (getf cat :color)
               :weight (getf cat :weight)
+              :description (getf cat :description)
               :status (spa.status:select
                        (list
                         :statuses (db status/get-all-for-cat (getf cat :statusid))))))))))
@@ -125,7 +128,8 @@
          (identification (hunchentoot:post-parameter "identification"))
          (race (hunchentoot:post-parameter "race"))
          (color (hunchentoot:post-parameter "color"))
-         (weight (hunchentoot:post-parameter "weight")))
+         (weight (hunchentoot:post-parameter "weight"))
+         (description (hunchentoot:post-parameter "description")))
     (db cat/update
         id
         name
@@ -135,6 +139,7 @@
         identification
         race
         color
-        weight)
+        weight
+        description)
     (restas:redirect 'cat/get-one :id id)))
 

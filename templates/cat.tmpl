@@ -96,6 +96,15 @@
       </div>
     </div>
 
+    <div class="description field-wrapper even">
+      <div class="field-name">
+        Description
+      </div>
+      <div class="field-value">
+        {$description}
+      </div>
+    </div>
+
     <div class="edit">
       <a href="/cat/{$id}/edit">modifier</a>
     </div>
@@ -153,6 +162,11 @@
       <label>
         <span>Poids</span>
         <input class="form-control" type="text" maxlength="50" name="weight" value="{$weight}">
+      </label>
+
+      <label>
+        <span>Description</span>
+        <textarea class="form-control" name="description">{$description}</textarea>
       </label>
 
       <input class="form-control btn btn-default" type="submit" value="Ajouter le chat">

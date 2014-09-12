@@ -1,6 +1,5 @@
 (defpackage #:spa-config (:export #:*base-directory*))
-(defparameter spa-config:*base-directory* 
-  (make-pathname :name nil :type nil :defaults *load-truename*))
+(defparameter spa-config:*base-directory* #P"/home/quicklisp/local-projects/spa/")
 
 (asdf:defsystem #:spa
   :serial t
