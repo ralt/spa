@@ -31,7 +31,8 @@
 (defun main (args)
   (declare (ignore args))
   (set-config)
-  (restas:start '#:spa :port 8080))
+  (restas:start '#:spa :port 8080)
+  (sb-impl::toplevel-repl nil))
 
 (defun set-config ()
   (let ((config (cl-json:decode-json-from-string (read-file))))
