@@ -56,7 +56,7 @@ WHERE h.id = $1
 
 (postmodern:defprepared history/get-last-50
     "
-SELECT h.type, h.time as date, h.comment, u.name as author
+SELECT h.id, h.type, h.time as date, h.comment, u.name as author
 FROM history h
 LEFT JOIN users u ON h.users = u.id
 ORDER BY time DESC
