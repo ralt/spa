@@ -8,9 +8,12 @@
       :title "All cats"
       :cats cats
       :onhome t
-      :body (spa.cat:links
+      :body (spa.cat:home
              (list
-              :cats (db cat/get-all)))))))
+              :cats (spa.cat:links (list :cats cats))
+              :histories (spa.history:show-all
+                          (list
+                           :histories (db history/get-last-50)))))))))
 
 (restas:define-route cat/goto ("cat/goto")
   (check-login)

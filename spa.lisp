@@ -26,6 +26,7 @@
   (spa.layout:main
    (list
     :title "SPA"
+    :isnotlogged t
     :body "Frontpage")))
 
 (defun main (args)

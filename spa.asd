@@ -1,5 +1,5 @@
 (defpackage #:spa-config (:export #:*base-directory*))
-(defparameter spa-config:*base-directory* #P"/home/quicklisp/local-projects/spa/")
+(defparameter spa-config:*base-directory* #P"/home/florian/quicklisp-projects/spa/")
 
 (asdf:defsystem #:spa
   :serial t

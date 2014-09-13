@@ -1,11 +1,5 @@
 {namespace spa.cat}
 
-{template showLink}
-  <div class="link">
-    <a href="/cat/{$id}">{$name}</a>
-  </div>
-{/template}
-
 {template view}
   <div class="cat">
     {call show-cat data="$cat" /}
@@ -174,9 +168,37 @@
   </form>
 {/template}
 
-{template links}
-  <hr>
-  
+{template home}
+  <fieldset>
+    <legend class="collapsible collapsed">Ajouter...</legend>
+    {call add-links /}
+  </fieldset>
+
+  <fieldset>
+    <legend class="collapsible collapsed">Liste des chats</legend>
+    {$cats|noAutoescape}
+  </fieldset>
+
+  <fieldset>
+    <legend class="collapsible">50 derniers suivis</legend>
+    
+    <div class="table-responsive">
+        <table class="history-table table table-striped">
+          <thead>
+            <th>Type</th>
+            <th>Date</th>
+            <th>Commentaire</th>
+            <th>Auteur</th>
+          </thead>
+          <tbody>
+          {$histories|noAutoescape}
+          </tbody>
+        </table>
+      </div>
+    </fieldset>
+{/template}
+
+{template addLinks}
   <div class="link">
     <a href="/cat/add">
       Ajouter un chat
@@ -194,9 +216,9 @@
       Ajouter un statut
     </a>
   </div>
+{/template}
 
-  <hr>
-  
+{template links}
   {foreach $cat in $cats}
     {call show-link data="$cat" /}
   {/foreach}
